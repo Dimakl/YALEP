@@ -1,4 +1,4 @@
-grammar BoolExp;
+grammar LogExp;
 
 parse
  : expression '=' BOOL EOF
