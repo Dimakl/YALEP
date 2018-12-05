@@ -32,11 +32,9 @@ def serializedATN():
 
 
 class LogExpLexer(Lexer):
-
     atn = ATNDeserializer().deserialize(serializedATN())
 
-    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
-
+    decisionsToDFA = [DFA(ds, i) for i, ds in enumerate(atn.decisionToState)]
 
     T__0 = 1
     AND = 2
@@ -48,17 +46,17 @@ class LogExpLexer(Lexer):
     BOOL = 8
     WS = 9
 
-    modeNames = [ "DEFAULT_MODE" ]
+    modeNames = ["DEFAULT_MODE"]
 
-    literalNames = [ "<INVALID>",
-            "'='", "'('", "')'" ]
+    literalNames = ["<INVALID>",
+                    "'='", "'('", "')'"]
 
-    symbolicNames = [ "<INVALID>",
-            "AND", "OR", "NOT", "LPAREN", "RPAREN", "IDENTIFIER", "BOOL", 
-            "WS" ]
+    symbolicNames = ["<INVALID>",
+                     "AND", "OR", "NOT", "LPAREN", "RPAREN", "IDENTIFIER", "BOOL",
+                     "WS"]
 
-    ruleNames = [ "T__0", "AND", "OR", "NOT", "LPAREN", "RPAREN", "IDENTIFIER", 
-                  "BOOL", "WS" ]
+    ruleNames = ["T__0", "AND", "OR", "NOT", "LPAREN", "RPAREN", "IDENTIFIER",
+                 "BOOL", "WS"]
 
     grammarFileName = "LogExp.g4"
 
@@ -68,5 +66,3 @@ class LogExpLexer(Lexer):
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
         self._actions = None
         self._predicates = None
-
-
