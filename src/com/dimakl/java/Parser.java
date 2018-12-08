@@ -12,7 +12,7 @@ public class Parser {
 
     public static void main(String[] args) {
         String input = "A and B = 1";
-        CharStream stream = CharStreams;
+        CharStream stream = CharStreams.fromString(input);
         // To re-use the parser+lexer instances, call their 'reset()' methods after setting their input streams.
         LogExpLexer lexer = new LogExpLexer(stream);
         TokenStream tokenStream =  new CommonTokenStream(lexer) ;
