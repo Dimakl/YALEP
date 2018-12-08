@@ -1,4 +1,4 @@
-package com.dimakl.antlr;// Generated from LogExp.g4 by ANTLR 4.5.3
+package com.dimakl.antlr;// Generated from LogExp.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class LogExpParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.5.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -221,6 +221,7 @@ public class LogExpParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(19);
+			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAREN:
 				{
@@ -263,7 +264,7 @@ public class LogExpParser extends Parser {
 			setState(27);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
-			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
@@ -326,7 +327,10 @@ public class LogExpParser extends Parser {
 			_la = _input.LA(1);
 			if ( !(_la==AND || _la==OR) ) {
 			_errHandler.recoverInline(this);
-			} else {
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
 				consume();
 			}
 			}
@@ -358,16 +362,16 @@ public class LogExpParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\13#\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13#\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\26"+
 		"\n\3\3\3\3\3\3\3\3\3\7\3\34\n\3\f\3\16\3\37\13\3\3\4\3\4\3\4\2\3\4\5\2"+
-		"\4\6\2\3\3\2\4\5\"\2\b\3\2\2\2\4\25\3\2\2\2\6 \3\2\2\2\b\t\5\4\3\2\t\n"+
-		"\7\3\2\2\n\13\7\n\2\2\13\f\7\2\2\3\f\3\3\2\2\2\r\16\b\3\1\2\16\17\7\7"+
-		"\2\2\17\20\5\4\3\2\20\21\7\b\2\2\21\26\3\2\2\2\22\23\7\6\2\2\23\26\5\4"+
-		"\3\5\24\26\7\t\2\2\25\r\3\2\2\2\25\22\3\2\2\2\25\24\3\2\2\2\26\35\3\2"+
-		"\2\2\27\30\f\4\2\2\30\31\5\6\4\2\31\32\5\4\3\5\32\34\3\2\2\2\33\27\3\2"+
-		"\2\2\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36\5\3\2\2\2\37\35\3\2"+
-		"\2\2 !\t\2\2\2!\7\3\2\2\2\4\25\35";
+		"\4\6\2\3\3\2\4\5\2\"\2\b\3\2\2\2\4\25\3\2\2\2\6 \3\2\2\2\b\t\5\4\3\2\t"+
+		"\n\7\3\2\2\n\13\7\n\2\2\13\f\7\2\2\3\f\3\3\2\2\2\r\16\b\3\1\2\16\17\7"+
+		"\7\2\2\17\20\5\4\3\2\20\21\7\b\2\2\21\26\3\2\2\2\22\23\7\6\2\2\23\26\5"+
+		"\4\3\5\24\26\7\t\2\2\25\r\3\2\2\2\25\22\3\2\2\2\25\24\3\2\2\2\26\35\3"+
+		"\2\2\2\27\30\f\4\2\2\30\31\5\6\4\2\31\32\5\4\3\5\32\34\3\2\2\2\33\27\3"+
+		"\2\2\2\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36\5\3\2\2\2\37\35\3"+
+		"\2\2\2 !\t\2\2\2!\7\3\2\2\2\4\25\35";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

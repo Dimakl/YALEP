@@ -1,4 +1,4 @@
-package com.dimakl.antlr;// Generated from LogExp.g4 by ANTLR 4.5.3
+package com.dimakl.antlr;// Generated from LogExp.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
