@@ -18,6 +18,6 @@ public class Parser {
         TokenStream tokenStream =  new CommonTokenStream(lexer) ;
         LogExpParser logExpParser = new LogExpParser(tokenStream);
         LogExpParser.ParseContext parseContext =  logExpParser.parse();
-        System.out.println(parseContext);
+        System.out.println(parseContext.expression());
     }
 }
