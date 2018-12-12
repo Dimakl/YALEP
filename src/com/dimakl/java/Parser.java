@@ -2,6 +2,7 @@ package com.dimakl.java;
 
 import org.antlr.v4.runtime.*;
 import com.dimakl.antlr.*;
+import org.antlr.v4.runtime.atn.ATN;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -19,5 +20,52 @@ public class Parser {
         LogExpParser logExpParser = new LogExpParser(tokenStream);
         LogExpParser.ParseContext parseContext =  logExpParser.parse();
         System.out.println(parseContext.expression());
+    }
+}
+
+class Lexer extends LogExpLexer{
+
+    @Override
+    public String[] getTokenNames() {
+        return super.getTokenNames();
+    }
+
+    @Override
+    public Vocabulary getVocabulary() {
+        return super.getVocabulary();
+    }
+
+    public Lexer(CharStream input) {
+        super(input);
+    }
+
+    @Override
+    public String getGrammarFileName() {
+        return super.getGrammarFileName();
+    }
+
+    @Override
+    public String[] getRuleNames() {
+        return super.getRuleNames();
+    }
+
+    @Override
+    public String getSerializedATN() {
+        return super.getSerializedATN();
+    }
+
+    @Override
+    public String[] getChannelNames() {
+        return super.getChannelNames();
+    }
+
+    @Override
+    public String[] getModeNames() {
+        return super.getModeNames();
+    }
+
+    @Override
+    public ATN getATN() {
+        return super.getATN();
     }
 }
