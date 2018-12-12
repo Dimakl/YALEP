@@ -3,6 +3,8 @@ package com.dimakl.java;
 import org.antlr.v4.runtime.*;
 import com.dimakl.antlr.*;
 import org.antlr.v4.runtime.atn.ATN;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -16,56 +18,92 @@ public class Parser {
         CharStream stream = CharStreams.fromString(input);
         // To re-use the parser+lexer instances, call their 'reset()' methods after setting their input streams.
         LogExpLexer lexer = new LogExpLexer(stream);
-        TokenStream tokenStream =  new CommonTokenStream(lexer) ;
+        TokenStream tokenStream = new CommonTokenStream(lexer);
         LogExpParser logExpParser = new LogExpParser(tokenStream);
-        LogExpParser.ParseContext parseContext =  logExpParser.parse();
+        LogExpParser.ParseContext parseContext = logExpParser.parse();
         System.out.println(parseContext.expression());
     }
 }
 
-class Lexer extends LogExpLexer{
+class ExpressionListenerL implements LogExpListener {
 
     @Override
-    public String[] getTokenNames() {
-        return super.getTokenNames();
+    public void enterParse(LogExpParser.ParseContext ctx) {
+
     }
 
     @Override
-    public Vocabulary getVocabulary() {
-        return super.getVocabulary();
-    }
+    public void exitParse(LogExpParser.ParseContext ctx) {
 
-    public Lexer(CharStream input) {
-        super(input);
     }
 
     @Override
-    public String getGrammarFileName() {
-        return super.getGrammarFileName();
+    public void enterBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
+
     }
 
     @Override
-    public String[] getRuleNames() {
-        return super.getRuleNames();
+    public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
+
     }
 
     @Override
-    public String getSerializedATN() {
-        return super.getSerializedATN();
+    public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
+
     }
 
     @Override
-    public String[] getChannelNames() {
-        return super.getChannelNames();
+    public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
+
     }
 
     @Override
-    public String[] getModeNames() {
-        return super.getModeNames();
+    public void enterNotExpression(LogExpParser.NotExpressionContext ctx) {
+
     }
 
     @Override
-    public ATN getATN() {
-        return super.getATN();
+    public void exitNotExpression(LogExpParser.NotExpressionContext ctx) {
+
+    }
+
+    @Override
+    public void enterParenExpression(LogExpParser.ParenExpressionContext ctx) {
+
+    }
+
+    @Override
+    public void exitParenExpression(LogExpParser.ParenExpressionContext ctx) {
+
+    }
+
+    @Override
+    public void enterBinary(LogExpParser.BinaryContext ctx) {
+
+    }
+
+    @Override
+    public void exitBinary(LogExpParser.BinaryContext ctx) {
+
+    }
+
+    @Override
+    public void visitTerminal(TerminalNode terminalNode) {
+
+    }
+
+    @Override
+    public void visitErrorNode(ErrorNode errorNode) {
+
+    }
+
+    @Override
+    public void enterEveryRule(ParserRuleContext parserRuleContext) {
+
+    }
+
+    @Override
+    public void exitEveryRule(ParserRuleContext parserRuleContext) {
+
     }
 }
