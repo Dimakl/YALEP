@@ -25,7 +25,7 @@ public class Parser {
     }
 }
 
-class ExpressionListenerL extends LogExpBaseListener {
+class ExpressionListener extends LogExpBaseListener {
 
     }
 }
