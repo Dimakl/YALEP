@@ -27,5 +27,19 @@ public class Parser {
 
 class ExpressionListener extends LogExpBaseListener {
 
+    @Override
+    public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
+        super.enterIdentifierExpression(ctx);
+    }
+
+    @Override
+    public void exitBinary(LogExpParser.BinaryContext ctx) {
+        super.exitBinary(ctx);
+    }
+
+    @Override
+    public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
+        super.exitBinaryExpression(ctx);
     }
 }
+
