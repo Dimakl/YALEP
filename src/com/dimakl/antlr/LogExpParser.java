@@ -25,7 +25,7 @@ public class LogExpParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'='", null, null, null, "'('", "')'"
+		null, "'='", "'&'", "'|'", "'^'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, "AND", "OR", "NOT", "LPAREN", "RPAREN", "IDENTIFIER", "BOOL", 

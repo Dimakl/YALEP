@@ -16,9 +16,9 @@ binary
  ;
 
 
-AND        : ('and' | 'AND' | '&') ;
-OR         : ('or' | 'OR' | '|') ;
-NOT        : ('not' | 'NOT' | '^');
+AND        : '&' ;
+OR         : '|' ;
+NOT        : '^' ;
 LPAREN     : '(' ;
 RPAREN     : ')' ;
 IDENTIFIER : [A-Z] ;
