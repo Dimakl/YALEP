@@ -11,14 +11,15 @@ public class Parser {
     public static void main(String args[]){
 
         // TODO: this part of code must be @Test
-        String testInp = "A&B&C|A=1";
+        String testInp = "A&B&C|A=0";
         LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(testInp));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         LogExpParser parser = new LogExpParser(tokens);
         ParseTree tree = parser.eval();
         ParseTreeWalker walker = new ParseTreeWalker();
-        ExpressionListener listener = new ExpressionListener();
+        ExpressionListener listener = new ExpressionListener(lexer);
         walker.walk(listener, tree);
+        //System.out.println(((((LogExpParser.EvalContext) tree).BOOL())));
     }
 }
