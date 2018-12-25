@@ -109,11 +109,6 @@ public class LogExpParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitEval(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitEval(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final EvalContext eval() throws RecognitionException {
@@ -176,13 +171,9 @@ public class LogExpParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitBinaryExpression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitBinaryExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class IdentifierExpressionContext extends ExpressionContext {
+		public Token id;
 		public TerminalNode IDENTIFIER() { return getToken(LogExpParser.IDENTIFIER, 0); }
 		public IdentifierExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
@@ -192,11 +183,6 @@ public class LogExpParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitIdentifierExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitIdentifierExpression(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NotExpressionContext extends ExpressionContext {
@@ -213,11 +199,6 @@ public class LogExpParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitNotExpression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitNotExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class ParenExpressionContext extends ExpressionContext {
 		public TerminalNode LPAREN() { return getToken(LogExpParser.LPAREN, 0); }
@@ -233,11 +214,6 @@ public class LogExpParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitParenExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitParenExpression(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -290,7 +266,7 @@ public class LogExpParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(18);
-				match(IDENTIFIER);
+				((IdentifierExpressionContext)_localctx).id = match(IDENTIFIER);
 				}
 				break;
 			default:
@@ -349,11 +325,6 @@ public class LogExpParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitBinary(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LogExpVisitor ) return ((LogExpVisitor<? extends T>)visitor).visitBinary(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 

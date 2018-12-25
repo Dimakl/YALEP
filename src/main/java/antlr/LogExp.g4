@@ -8,7 +8,7 @@ expression
  : LPAREN expression RPAREN                       #parenExpression
  | NOT expression                                 #notExpression
  | left=expression op=binary right=expression     #binaryExpression
- | IDENTIFIER                                     #identifierExpression
+ | id=IDENTIFIER                                  #identifierExpression
  ;
 
 binary
