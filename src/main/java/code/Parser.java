@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.util.List;
+
 public class Parser {
     public static void main(String args[]){
 
@@ -20,6 +22,10 @@ public class Parser {
         ParseTreeWalker walker = new ParseTreeWalker();
         ExpressionListener listener = new ExpressionListener(lexer);
         walker.walk(listener, tree);
+        List<String> vars = listener.getVars();
+        for (String variable : vars) {
+            System.out.println(variable);
+        }
         //System.out.println(((((LogExpParser.EvalContext) tree).BOOL())));
     }
 }
