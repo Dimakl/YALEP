@@ -6,7 +6,7 @@ eval
 
 expression
  : LPAREN expression RPAREN                       #parenExpression
- | NOT expression                                 #notExpression
+ | not expression                                 #notExpression
  | left=expression op=binary right=expression     #binaryExpression
  | id=IDENTIFIER                                  #identifierExpression
  ;
@@ -15,6 +15,8 @@ binary
  : AND | OR
  ;
 
+not
+: NOT ;
 
 AND        : '&' ;
 OR         : '|' ;

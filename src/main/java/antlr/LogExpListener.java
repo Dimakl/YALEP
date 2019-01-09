@@ -75,4 +75,14 @@ public interface LogExpListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBinary(LogExpParser.BinaryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LogExpParser#not}.
+	 * @param ctx the parse tree
+	 */
+	void enterNot(LogExpParser.NotContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LogExpParser#not}.
+	 * @param ctx the parse tree
+	 */
+	void exitNot(LogExpParser.NotContext ctx);
 }
