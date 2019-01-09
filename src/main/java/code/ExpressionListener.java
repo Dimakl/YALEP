@@ -13,18 +13,14 @@ public class ExpressionListener extends LogExpBaseListener{
     private HashSet<String> vars = new HashSet<String>();
     private LogExpLexer lexer;
 
-    ExpressionListener(LogExpLexer lexer){
+    public ExpressionListener(LogExpLexer lexer){
         this.lexer = lexer;
     }
 
     public List<String> getVars(){
-        List<String> varsList = new ArrayList<String>();
-        Iterator<String> iterator = vars.iterator();
-        while (iterator.hasNext()){
-            varsList.add(iterator.next());
-        }
-        return varsList;
+        return new ArrayList<String>(vars);
     }
+
 
     @Override
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
@@ -36,6 +32,15 @@ public class ExpressionListener extends LogExpBaseListener{
         }
         System.out.println();
     }
+
+
+    //TODO: make realization of these 2 methods:
+    @Override
+    public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) { }
+
+    @Override
+    public void exitNotExpression(LogExpParser.NotExpressionContext ctx) { }
+
 
     @Override
     public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
