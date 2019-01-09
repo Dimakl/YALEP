@@ -83,18 +83,6 @@ public class LogExpBaseListener implements LogExpListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitBinary(LogExpParser.BinaryContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterNot(LogExpParser.NotContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNot(LogExpParser.NotContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

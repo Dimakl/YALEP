@@ -20,10 +20,10 @@ public class LogExpParser extends Parser {
 		T__0=1, AND=2, OR=3, NOT=4, LPAREN=5, RPAREN=6, IDENTIFIER=7, BOOL=8, 
 		WS=9;
 	public static final int
-		RULE_eval = 0, RULE_expression = 1, RULE_binary = 2, RULE_not = 3;
+		RULE_eval = 0, RULE_expression = 1, RULE_binary = 2;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"eval", "expression", "binary", "not"
+			"eval", "expression", "binary"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -117,13 +117,13 @@ public class LogExpParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(8);
+			setState(6);
 			expression(0);
-			setState(9);
+			setState(7);
 			match(T__0);
-			setState(10);
+			setState(8);
 			match(BOOL);
-			setState(11);
+			setState(9);
 			match(EOF);
 			}
 		}
@@ -186,9 +186,7 @@ public class LogExpParser extends Parser {
 		}
 	}
 	public static class NotExpressionContext extends ExpressionContext {
-		public NotContext not() {
-			return getRuleContext(NotContext.class,0);
-		}
+		public TerminalNode NOT() { return getToken(LogExpParser.NOT, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
@@ -234,7 +232,7 @@ public class LogExpParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(22);
+			setState(19);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAREN:
@@ -243,11 +241,11 @@ public class LogExpParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(14);
+				setState(12);
 				match(LPAREN);
-				setState(15);
+				setState(13);
 				expression(0);
-				setState(16);
+				setState(14);
 				match(RPAREN);
 				}
 				break;
@@ -256,9 +254,9 @@ public class LogExpParser extends Parser {
 				_localctx = new NotExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(18);
-				not();
-				setState(19);
+				setState(16);
+				match(NOT);
+				setState(17);
 				expression(3);
 				}
 				break;
@@ -267,7 +265,7 @@ public class LogExpParser extends Parser {
 				_localctx = new IdentifierExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(21);
+				setState(18);
 				((IdentifierExpressionContext)_localctx).id = match(IDENTIFIER);
 				}
 				break;
@@ -275,7 +273,7 @@ public class LogExpParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(30);
+			setState(27);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -287,16 +285,16 @@ public class LogExpParser extends Parser {
 					_localctx = new BinaryExpressionContext(new ExpressionContext(_parentctx, _parentState));
 					((BinaryExpressionContext)_localctx).left = _prevctx;
 					pushNewRecursionContext(_localctx, _startState, RULE_expression);
-					setState(24);
+					setState(21);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(25);
+					setState(22);
 					((BinaryExpressionContext)_localctx).op = binary();
-					setState(26);
+					setState(23);
 					((BinaryExpressionContext)_localctx).right = expression(3);
 					}
 					} 
 				}
-				setState(32);
+				setState(29);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
@@ -337,7 +335,7 @@ public class LogExpParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(30);
 			_la = _input.LA(1);
 			if ( !(_la==AND || _la==OR) ) {
 			_errHandler.recoverInline(this);
@@ -347,43 +345,6 @@ public class LogExpParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class NotContext extends ParserRuleContext {
-		public TerminalNode NOT() { return getToken(LogExpParser.NOT, 0); }
-		public NotContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_not; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).enterNot(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LogExpListener ) ((LogExpListener)listener).exitNot(this);
-		}
-	}
-
-	public final NotContext not() throws RecognitionException {
-		NotContext _localctx = new NotContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_not);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(35);
-			match(NOT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -413,17 +374,16 @@ public class LogExpParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13(\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\5\3\31\n\3\3\3\3\3\3\3\3\3\7\3\37\n\3\f\3\16\3\"\13\3\3\4\3\4\3\5"+
-		"\3\5\3\5\2\3\4\6\2\4\6\b\2\3\3\2\4\5\2&\2\n\3\2\2\2\4\30\3\2\2\2\6#\3"+
-		"\2\2\2\b%\3\2\2\2\n\13\5\4\3\2\13\f\7\3\2\2\f\r\7\n\2\2\r\16\7\2\2\3\16"+
-		"\3\3\2\2\2\17\20\b\3\1\2\20\21\7\7\2\2\21\22\5\4\3\2\22\23\7\b\2\2\23"+
-		"\31\3\2\2\2\24\25\5\b\5\2\25\26\5\4\3\5\26\31\3\2\2\2\27\31\7\t\2\2\30"+
-		"\17\3\2\2\2\30\24\3\2\2\2\30\27\3\2\2\2\31 \3\2\2\2\32\33\f\4\2\2\33\34"+
-		"\5\6\4\2\34\35\5\4\3\5\35\37\3\2\2\2\36\32\3\2\2\2\37\"\3\2\2\2 \36\3"+
-		"\2\2\2 !\3\2\2\2!\5\3\2\2\2\" \3\2\2\2#$\t\2\2\2$\7\3\2\2\2%&\7\6\2\2"+
-		"&\t\3\2\2\2\4\30 ";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\13#\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\26"+
+		"\n\3\3\3\3\3\3\3\3\3\7\3\34\n\3\f\3\16\3\37\13\3\3\4\3\4\3\4\2\3\4\5\2"+
+		"\4\6\2\3\3\2\4\5\2\"\2\b\3\2\2\2\4\25\3\2\2\2\6 \3\2\2\2\b\t\5\4\3\2\t"+
+		"\n\7\3\2\2\n\13\7\n\2\2\13\f\7\2\2\3\f\3\3\2\2\2\r\16\b\3\1\2\16\17\7"+
+		"\7\2\2\17\20\5\4\3\2\20\21\7\b\2\2\21\26\3\2\2\2\22\23\7\6\2\2\23\26\5"+
+		"\4\3\5\24\26\7\t\2\2\25\r\3\2\2\2\25\22\3\2\2\2\25\24\3\2\2\2\26\35\3"+
+		"\2\2\2\27\30\f\4\2\2\30\31\5\6\4\2\31\32\5\4\3\5\32\34\3\2\2\2\33\27\3"+
+		"\2\2\2\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36\5\3\2\2\2\37\35\3"+
+		"\2\2\2 !\t\2\2\2!\7\3\2\2\2\4\25\35";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
