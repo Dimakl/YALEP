@@ -12,6 +12,11 @@ public class ExpressionListener extends LogExpBaseListener{
     // type of vars is String, because Strings could be used as vars in future
     private HashSet<String> vars = new HashSet<String>();
     private LogExpLexer lexer;
+    // string array in future should be changed to reference array
+    private HashMap<String,ArrayList<String>> nodeMap = new HashMap<String, ArrayList<String>>();
+
+    // such a redundancy is made for future development
+    public final String PASS_NODE = "pass";
 
     public ExpressionListener(LogExpLexer lexer){
         this.lexer = lexer;
@@ -36,7 +41,9 @@ public class ExpressionListener extends LogExpBaseListener{
 
     //TODO: make realization of these 2 methods:
     @Override
-    public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) { }
+    public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
+        nodeMap.put(ctx.id.getText(), new ArrayList<String>());
+    }
 
     @Override
     public void exitNotExpression(LogExpParser.NotExpressionContext ctx) { }
