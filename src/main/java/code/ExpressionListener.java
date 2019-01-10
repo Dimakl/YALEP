@@ -4,8 +4,11 @@ import antlr.LogExpBaseListener;
 import antlr.LogExpLexer;
 import antlr.LogExpParser;
 import org.antlr.v4.runtime.Vocabulary;
+import java.util.Map;
 
 import java.util.*;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 public class ExpressionListener extends LogExpBaseListener{
 
@@ -31,10 +34,7 @@ public class ExpressionListener extends LogExpBaseListener{
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
         //TODO: understand what must be happening here
         Vocabulary vocabulary =  lexer.getVocabulary();
-        System.out.println(ctx.toString()+":");
-        for (LogExpParser.ExpressionContext expCtx : ctx.expression()){
-            System.out.println(expCtx.depth());
-        }
+
         System.out.println();
     }
 
@@ -42,7 +42,7 @@ public class ExpressionListener extends LogExpBaseListener{
     //TODO: make realization of these 2 methods:
     @Override
     public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
-        nodeMap.put(ctx.id.getText(), new ArrayList<String>());
+        nodeMap.putIfAbsent(ctx.id.getText(), new ArrayList<String>());
     }
 
     @Override
