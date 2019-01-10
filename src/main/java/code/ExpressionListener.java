@@ -16,13 +16,14 @@ public class ExpressionListener extends LogExpBaseListener{
     private HashSet<String> vars = new HashSet<String>();
     private LogExpLexer lexer;
     // string array in future should be changed to reference array
-    private HashMap<String,ArrayList<String>> nodeMap = new HashMap<String, ArrayList<String>>();
+    private HashMap<String,ArrayList<String>> nodeMap;
 
     // such a redundancy is made for future development
     public final String PASS_NODE = "pass";
 
     public ExpressionListener(LogExpLexer lexer){
         this.lexer = lexer;
+        nodeMap = new HashMap<String, ArrayList<String>>();
     }
 
     public List<String> getVars(){
@@ -34,8 +35,21 @@ public class ExpressionListener extends LogExpBaseListener{
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
         //TODO: understand what must be happening here
         Vocabulary vocabulary =  lexer.getVocabulary();
-
-        System.out.println();
+        String leftOp = ctx.left.getText(),
+            rightOp = ctx.right.getText(),
+            op = ctx.op.getText(),
+            fullOpName = "("+leftOp+")" + op + "("+rightOp+")";
+        if (!nodeMap.containsKey(fullOpName))
+            nodeMap.put(fullOpName, new ArrayList<String>());
+        else {
+            int i;
+            for (i = 2; i < 20; i++)
+                if (!nodeMap.containsKey(fullOpName+"["+i+"]")) {
+                    fullOpName = fullOpName+"["+i+"]";
+                    nodeMap.put(fullOpName, new ArrayList<>());
+                    break;
+                }
+        }
     }
 
 
