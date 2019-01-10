@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.util.List;
 
 public class Parser {
-    public static void main(String args[]){
+    public static void main(String args[]) {
 
         // TODO: this part of code must be @Test
         String testInp = "A&B&C|A=0";

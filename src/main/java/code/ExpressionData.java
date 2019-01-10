@@ -3,7 +3,7 @@ package code;
 public class ExpressionData {
     private int outputValue;
 
-    ExpressionData(){
+    ExpressionData() {
 
     }
 
