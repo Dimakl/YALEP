@@ -47,7 +47,6 @@ public class ExpressionListener extends LogExpBaseListener {
 
     @Override
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
-        //TODO: understand what must be happening here
         Vocabulary vocabulary = lexer.getVocabulary();
         String leftOp = ctx.left.getText(),
                 rightOp = ctx.right.getText(),
@@ -64,6 +63,10 @@ public class ExpressionListener extends LogExpBaseListener {
                     break;
                 }
         }
+
+        //TODO: main problem now is to detect collisions and give unique IDs to each expression, like A&B created on 3rd iteration and A&B created on 5th iteration
+
+        System.out.println(ctx.left.getAltNumber());
         int leftLen = nodeMap.get(leftOp).size(),
                 rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
