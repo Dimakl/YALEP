@@ -66,7 +66,7 @@ public class ExpressionListener extends LogExpBaseListener {
 
         //TODO: main problem now is to detect collisions and give unique IDs to each expression, like A&B created on 3rd iteration and A&B created on 5th iteration
 
-        System.out.println(ctx.left.getAltNumber());
+        System.out.println(ctx.right.getText());
         int leftLen = nodeMap.get(leftOp).size(),
                 rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
