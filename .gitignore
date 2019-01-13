@@ -82,3 +82,7 @@ fabric.properties
 .idea/sonarlint
 
 # End of https://www.gitignore.io/api/intellij
+
+# In addition to auto-generated .gitignore:
+.idea/checkstyle-idea.xml
+.idea/compiler.xml
