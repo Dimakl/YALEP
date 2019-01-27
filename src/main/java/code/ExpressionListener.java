@@ -44,9 +44,28 @@ public class ExpressionListener extends LogExpBaseListener {
     }
 
 
+    /*
+        One of important features from antlr is .getStartIndex()
+        because it could be used as identificator of function
+        so, example:
+        (A&B)|(A&B)&C=1
+        here we see 2 A&B, and they identify as 2 and 8
+        ...&C identifies as 11
+        so when we see ...&C we should:
+        1. delete all () from ... [it may be changed later]
+        2. find the closest from left index of ... in array of ...
+           in this case: we should have a dictionary with A&B
+           in here we contain all indices of this expression entries
+           like A&B: 1,3,21,34
+        3. we change array in another dict with entry keys, like
+           A&B[21], and we change this key value.
+        So that feature must be made
+     */
+
     @Override
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
         Vocabulary vocabulary = lexer.getVocabulary();
+        System.out.println(ctx.getText()+": "+ctx.op.getStart().getStartIndex());
         String leftOp = ctx.left.getText(),
                 rightOp = ctx.right.getText(),
                 op = ctx.op.getText(),

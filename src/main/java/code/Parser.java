@@ -15,7 +15,7 @@ public class Parser {
         //TODO: fix problems with brackets: in parsing and in operation order
 
         // TODO: this part of code must be @Test
-        String testInp = "A&B|A&B|C=1"; //"A&B&C|A=0";
+        String testInp = "A&B&(A&B)=1"; //"A&B&C|A=0";
         LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(testInp));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
