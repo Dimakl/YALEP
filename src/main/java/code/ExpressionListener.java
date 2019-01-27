@@ -9,7 +9,6 @@ import java.util.Map;
 
 import java.util.*;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Syntax.Java;
 
 public class ExpressionListener extends LogExpBaseListener {
 
