@@ -86,5 +86,5 @@ fabric.properties
 # In addition to auto-generated .gitignore:
 .idea/checkstyle-idea.xml
 .idea/compiler.xml
-target/*
+*/target/**
 .idea/misc.xml
