@@ -13,10 +13,11 @@ import java.util.*;
 public class ExpressionListener extends LogExpBaseListener {
 
     // type of vars is String, because Strings could be used as vars in future
-    private HashSet<String> vars = new HashSet<String>();
+    private HashSet<String> vars = new HashSet<>();
+    private HashMap<String, ArrayList<Integer> > entries = new HashMap<>();
     private LogExpLexer lexer;
     // string array in future should be changed to reference array
-    private HashMap<String, ArrayList<String>> nodeMap;
+    private HashMap<String, ArrayList<String> > nodeMap;
 
     // such a redundancy is made for future development
     public final String PASS_NODE = "pass";
@@ -70,32 +71,22 @@ public class ExpressionListener extends LogExpBaseListener {
                 rightOp = ctx.right.getText(),
                 op = ctx.op.getText(),
                 fullOpName = leftOp + op + rightOp;
-        if (!nodeMap.containsKey(fullOpName))
-            nodeMap.put(fullOpName, new ArrayList<String>());
-        else {
-            int i;
-            for (i = 2; i < 20; i++)
-                if (!nodeMap.containsKey(fullOpName + "[" + i + "]")) {
-                    fullOpName = fullOpName + "[" + i + "]";
-                    nodeMap.put(fullOpName, new ArrayList<>());
-                    break;
-                }
-        }
 
-        //TODO: main problem now is to detect collisions and give unique IDs to each expression, like A&B created on 3rd iteration and A&B created on 5th iteration
-
+        int idIndex = ctx.op.getStart().getStartIndex();
+        entries.putIfAbsent(fullOpName, new ArrayList<>());
+        entries.get(fullOpName).add(idIndex);
+        String opWithIndex = fullOpName + idIndex;
+        nodeMap.put(opWithIndex, new ArrayList<>());
         System.out.println(ctx.right.getText());
         int leftLen = nodeMap.get(leftOp).size(),
-                rightLen = nodeMap.get(rightOp).size();
+            rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
         nodeMap.get(leftOp).addAll(Collections.nCopies(maxLen - leftLen, PASS_NODE));
         nodeMap.get(rightOp).addAll(Collections.nCopies(maxLen - rightLen, PASS_NODE));
-        nodeMap.get(fullOpName).addAll(Collections.nCopies(maxLen, PASS_NODE));
-
-        nodeMap.get(leftOp).add(fullOpName);
-        nodeMap.get(rightOp).add(fullOpName);
-        nodeMap.get(fullOpName).add(CREATE_NODE);
-
+        nodeMap.get(opWithIndex).addAll(Collections.nCopies(maxLen, PASS_NODE));
+        nodeMap.get(leftOp).add(opWithIndex);
+        nodeMap.get(rightOp).add(opWithIndex);
+        nodeMap.get(opWithIndex).add(CREATE_NODE);
         printNodeMap();
     }
 
