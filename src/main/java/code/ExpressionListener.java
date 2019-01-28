@@ -78,6 +78,7 @@ public class ExpressionListener extends LogExpBaseListener {
         String opWithIndex = fullOpName + idIndex;
         nodeMap.put(opWithIndex, new ArrayList<>());
         System.out.println(ctx.right.getText());
+        // TODO: in next commit here leftOp and rightOp must contain their IDs? must work with entries
         int leftLen = nodeMap.get(leftOp).size(),
             rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
