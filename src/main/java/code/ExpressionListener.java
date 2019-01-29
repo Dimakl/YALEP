@@ -72,13 +72,18 @@ public class ExpressionListener extends LogExpBaseListener {
                 op = ctx.op.getText(),
                 fullOpName = leftOp + op + rightOp;
 
-        int idIndex = ctx.op.getStart().getStartIndex();
+        Integer idIndex = ctx.op.getStart().getStartIndex();
         entries.putIfAbsent(fullOpName, new ArrayList<>());
         entries.get(fullOpName).add(idIndex);
         String opWithIndex = fullOpName + idIndex;
         nodeMap.put(opWithIndex, new ArrayList<>());
         System.out.println(ctx.right.getText());
         // TODO: in next commit here leftOp and rightOp must contain their IDs? must work with entries
+        // There may be a problem with brackets
+        Collections.sort(entries.get(rightOp));
+        Collections.sort(entries.get(leftOp));
+        Integer rightOpIndex = Collections.binarySearch(entries.get(leftOp),idIndex);
+                leftOpIndex = 0 // googling it now;
         int leftLen = nodeMap.get(leftOp).size(),
             rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
