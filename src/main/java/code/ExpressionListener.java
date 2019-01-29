@@ -72,18 +72,28 @@ public class ExpressionListener extends LogExpBaseListener {
                 op = ctx.op.getText(),
                 fullOpName = leftOp + op + rightOp;
 
+        leftOp = UtilityMethods.deleteBrackets(leftOp);
+        rightOp = UtilityMethods.deleteBrackets(rightOp);
         Integer idIndex = ctx.op.getStart().getStartIndex();
         entries.putIfAbsent(fullOpName, new ArrayList<>());
         entries.get(fullOpName).add(idIndex);
         String opWithIndex = fullOpName + idIndex;
         nodeMap.put(opWithIndex, new ArrayList<>());
         System.out.println(ctx.right.getText());
-        // TODO: in next commit here leftOp and rightOp must contain their IDs? must work with entries
-        // There may be a problem with brackets
+
+        System.out.println(rightOp);
+        // here is bug with one letter variable (B)
         Collections.sort(entries.get(rightOp));
         Collections.sort(entries.get(leftOp));
-        Integer rightOpIndex = Collections.binarySearch(entries.get(leftOp),idIndex);
-                leftOpIndex = 0 // googling it now;
+        Integer rightOpIndex = Collections.binarySearch(entries.get(leftOp),idIndex),
+                leftOpIndex = Collections.binarySearch(entries.get(rightOp), idIndex, new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer integer, Integer t1) {
+                        return (integer > t1) ? 1 : 0;
+                    }
+                });
+        System.out.println(rightOpIndex+" "+leftOpIndex);
+
         int leftLen = nodeMap.get(leftOp).size(),
             rightLen = nodeMap.get(rightOp).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
@@ -114,7 +124,12 @@ public class ExpressionListener extends LogExpBaseListener {
 
     @Override
     public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
-        vars.add(ctx.id.getText());
+        vars.add(ctx.id.getText()+ctx.getStart().getStartIndex());
+        entries.putIfAbsent(ctx.id.getText(),
+                new ArrayList<Integer>() {{
+                    add(ctx.getStart().getStartIndex());
+                }}
+                );
     }
 
 }
