@@ -18,21 +18,25 @@ public class UtilityMethods {
         return s.substring(iter, s.length() - iter );
     }
     // the asymptotic of these 2 functions should be improved to O(n*log(n))
-    public static int searchLeft(ArrayList<Integer> array, int element) {
+    public static int searchLeft(ArrayList<Integer> array, int element, String operation) {
+        if (operation.length() == 1)
+            return 0;
         Collections.sort(array);
         for (int i = array.size() - 1; i >= 0; i--) {
             if (array.get(i) < element) {
-                return i;
+                return array.get(i);
             }
         }
         return -1; // can not be called actually
     }
 
-    public static int searchRight(ArrayList<Integer> array, int element) {
+    public static int searchRight(ArrayList<Integer> array, int element, String operation) {
+        if (operation.length() == 1)
+            return 0;
         Collections.sort(array);
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) > element) {
-                return i;
+                return array.get(i);
             }
         }
         return -1; // can not be called actually
