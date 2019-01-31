@@ -71,7 +71,6 @@ public class ExpressionListener extends LogExpBaseListener {
                 rightOp = ctx.right.getText(),
                 op = ctx.op.getText(),
                 fullOpName = leftOp + op + rightOp;
-
         leftOp = UtilityMethods.deleteBrackets(leftOp);
         rightOp = UtilityMethods.deleteBrackets(rightOp);
         Integer idIndex = ctx.op.getStart().getStartIndex();
@@ -81,27 +80,27 @@ public class ExpressionListener extends LogExpBaseListener {
         nodeMap.put(opWithIndex, new ArrayList<>());
         System.out.println(ctx.right.getText());
 
-        System.out.println(rightOp);
         // here is bug with one letter variable (B)
-        Collections.sort(entries.get(rightOp));
-        Collections.sort(entries.get(leftOp));
-        Integer rightOpIndex = Collections.binarySearch(entries.get(leftOp),idIndex),
-                leftOpIndex = Collections.binarySearch(entries.get(rightOp), idIndex, new Comparator<Integer>() {
-                    @Override
-                    public int compare(Integer integer, Integer t1) {
-                        return (integer > t1) ? 1 : 0;
-                    }
-                });
+        for (String i : entries.keySet()){
+            System.out.print(i+" ");
+        }
+        int rightOpIndex = UtilityMethods.searchRight(entries.get(rightOp), idIndex, rightOp),
+            leftOpIndex = UtilityMethods.searchLeft(entries.get(leftOp), idIndex, leftOp);
         System.out.println(rightOpIndex+" "+leftOpIndex);
-
-        int leftLen = nodeMap.get(leftOp).size(),
-            rightLen = nodeMap.get(rightOp).size();
+        String leftOpWithIndex = leftOp + leftOpIndex;
+        String rightOpWithIndex = rightOp + rightOpIndex;
+        System.out.println("left: "+leftOpWithIndex);
+        System.out.println("right: "+rightOpWithIndex);
+        for (String s : nodeMap.keySet())
+            System.out.println("s = " + s);
+        int leftLen = nodeMap.get(leftOpWithIndex).size(),
+            rightLen = nodeMap.get(rightOpWithIndex).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
-        nodeMap.get(leftOp).addAll(Collections.nCopies(maxLen - leftLen, PASS_NODE));
-        nodeMap.get(rightOp).addAll(Collections.nCopies(maxLen - rightLen, PASS_NODE));
+        nodeMap.get(leftOpWithIndex).addAll(Collections.nCopies(maxLen - leftLen, PASS_NODE));
+        nodeMap.get(rightOpWithIndex).addAll(Collections.nCopies(maxLen - rightLen, PASS_NODE));
         nodeMap.get(opWithIndex).addAll(Collections.nCopies(maxLen, PASS_NODE));
-        nodeMap.get(leftOp).add(opWithIndex);
-        nodeMap.get(rightOp).add(opWithIndex);
+        nodeMap.get(leftOpWithIndex).add(opWithIndex);
+        nodeMap.get(rightOpWithIndex).add(opWithIndex);
         nodeMap.get(opWithIndex).add(CREATE_NODE);
         printNodeMap();
     }
@@ -110,7 +109,7 @@ public class ExpressionListener extends LogExpBaseListener {
     //TODO: make realization of these 2 methods:
     @Override
     public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
-        nodeMap.putIfAbsent(ctx.id.getText(),
+        nodeMap.putIfAbsent(ctx.id.getText()+"0",
                 new ArrayList<String>() {{
                     add(CREATE_NODE);
                 }}
@@ -127,7 +126,7 @@ public class ExpressionListener extends LogExpBaseListener {
         vars.add(ctx.id.getText()+ctx.getStart().getStartIndex());
         entries.putIfAbsent(ctx.id.getText(),
                 new ArrayList<Integer>() {{
-                    add(ctx.getStart().getStartIndex());
+                    add(0);
                 }}
                 );
     }
