@@ -12,6 +12,6 @@ public class UtilityMethods {
                 break;
             }
         }
-        return s.substring(iter, s.length() - iter - 1);
+        return s.substring(iter, s.length() - iter );
     }
 }
