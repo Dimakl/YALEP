@@ -33,6 +33,10 @@ public class ExpressionListener extends LogExpBaseListener {
         return new ArrayList<String>(vars);
     }
 
+    public HashMap<String, ArrayList<String>> getNodeMap() {
+        return nodeMap;
+    }
+
     // method for testing TODO: delete this method
     private void printNodeMap() {
         for (String item : nodeMap.keySet()) {
@@ -66,7 +70,6 @@ public class ExpressionListener extends LogExpBaseListener {
     @Override
     public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) {
         Vocabulary vocabulary = lexer.getVocabulary();
-        System.out.println(ctx.getText()+": "+ctx.op.getStart().getStartIndex());
         String leftOp = ctx.left.getText(),
                 rightOp = ctx.right.getText(),
                 op = ctx.op.getText(),
@@ -78,21 +81,12 @@ public class ExpressionListener extends LogExpBaseListener {
         entries.get(fullOpName).add(idIndex);
         String opWithIndex = fullOpName + idIndex;
         nodeMap.put(opWithIndex, new ArrayList<>());
-        System.out.println(ctx.right.getText());
 
-        // here is bug with one letter variable (B)
-        for (String i : entries.keySet()){
-            System.out.print(i+" ");
-        }
         int rightOpIndex = UtilityMethods.searchRight(entries.get(rightOp), idIndex, rightOp),
             leftOpIndex = UtilityMethods.searchLeft(entries.get(leftOp), idIndex, leftOp);
-        System.out.println(rightOpIndex+" "+leftOpIndex);
         String leftOpWithIndex = leftOp + leftOpIndex;
         String rightOpWithIndex = rightOp + rightOpIndex;
-        System.out.println("left: "+leftOpWithIndex);
-        System.out.println("right: "+rightOpWithIndex);
-        for (String s : nodeMap.keySet())
-            System.out.println("s = " + s);
+
         int leftLen = nodeMap.get(leftOpWithIndex).size(),
             rightLen = nodeMap.get(rightOpWithIndex).size();
         int maxLen = (leftLen > rightLen) ? leftLen : rightLen;
@@ -102,7 +96,6 @@ public class ExpressionListener extends LogExpBaseListener {
         nodeMap.get(leftOpWithIndex).add(opWithIndex);
         nodeMap.get(rightOpWithIndex).add(opWithIndex);
         nodeMap.get(opWithIndex).add(CREATE_NODE);
-        printNodeMap();
     }
 
 
@@ -123,7 +116,7 @@ public class ExpressionListener extends LogExpBaseListener {
 
     @Override
     public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
-        vars.add(ctx.id.getText()+ctx.getStart().getStartIndex());
+        vars.add(ctx.id.getText()+"0");
         entries.putIfAbsent(ctx.id.getText(),
                 new ArrayList<Integer>() {{
                     add(0);

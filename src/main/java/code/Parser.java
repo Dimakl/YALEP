@@ -7,7 +7,10 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
 
 public class Parser {
     public static void main(String args[]) {
@@ -15,7 +18,7 @@ public class Parser {
         //TODO: fix problems with brackets: in parsing and in operation order
 
         // TODO: this part of code must be @Test
-        String testInp = "A&B&(A&B)=1"; //"A&B&C|A=0";
+        String testInp = "A&B|C=0"; //"A&B&C|A=0";
         LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(testInp));
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -28,6 +31,6 @@ public class Parser {
         for (String variable : vars) {
             System.out.println(variable);
         }
-        //System.out.println(((((LogExpParser.EvalContext) tree).BOOL())));
+        HashMap<String, ArrayList<String>> nodeMap = listener.getNodeMap();
     }
 }
