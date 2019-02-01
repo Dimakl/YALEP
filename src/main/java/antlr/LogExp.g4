@@ -5,10 +5,10 @@ eval
  ;
 
 expression
- : LPAREN expression RPAREN                       #parenExpression
- | NOT expression                                 #notExpression
+ : NOT expression                                 #notExpression
  | left=expression op=binary right=expression     #binaryExpression
  | id=IDENTIFIER                                  #identifierExpression
+ | LPAREN expression RPAREN                       #parenExpression
  ;
 
 binary
