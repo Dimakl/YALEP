@@ -1,7 +1,9 @@
 package code;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class UtilityMethods {
 
@@ -40,5 +42,17 @@ public class UtilityMethods {
             }
         }
         return -1; // can not be called actually
+    }
+
+    protected static void cropNodeMap(HashMap<String,ArrayList <String>> nodeMap) {
+        for (String key : nodeMap.keySet()) {
+            int i = nodeMap.get(key).size() - 1;
+            for (;i >= 0; i--) {
+                if (!nodeMap.get(key).get(i).equals(ExpressionListener.PASS_NODE))
+                    break;
+            }
+            nodeMap.put(key, new ArrayList<String>(nodeMap.get(key).subList(0,i)));
+            nodeMap.get(key).add(ExpressionListener.DEAD_NODE);
+        }
     }
 }

@@ -13,6 +13,19 @@ import java.util.List;
 import java.util.Vector;
 
 public class Parser {
+
+
+    private static HashMap<String, ArrayList<String>> nodeMap;
+    // for debug purposes only!!!
+    public static void printNodeMap() {
+        for (String key : nodeMap.keySet()) {
+            System.out.print(key+": ");
+            for (String el : nodeMap.get(key))
+                System.out.print(el+" ");
+            System.out.println();
+        }
+    }
+
     public static void main(String args[]) {
         //TODO: fault in parsing input is caught in ExpressionListener and fails the build, example: "A&B|(A&B|C=1)"
         //TODO: fix problems with brackets: in parsing and in operation order
@@ -31,6 +44,8 @@ public class Parser {
         for (String variable : vars) {
             System.out.println(variable);
         }
-        HashMap<String, ArrayList<String>> nodeMap = listener.getNodeMap();
+        nodeMap = listener.getNodeMap();
+        UtilityMethods.cropNodeMap(nodeMap);
+        printNodeMap();
     }
 }

@@ -20,9 +20,9 @@ public class ExpressionListener extends LogExpBaseListener {
     private HashMap<String, ArrayList<String> > nodeMap;
 
     // such a redundancy is made for future development
-    public final String PASS_NODE = "pass";
-    public final String CREATE_NODE = "create";
-    public final String DEAD_NODE = "dead";
+    public static final String PASS_NODE = "pass";
+    public static final String CREATE_NODE = "create";
+    public static final String DEAD_NODE = "dead";
 
     public ExpressionListener(LogExpLexer lexer) {
         this.lexer = lexer;
