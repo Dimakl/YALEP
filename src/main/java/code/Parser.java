@@ -14,6 +14,15 @@ import java.util.Vector;
 
 public class Parser {
 
+    final static public class ParsedData {
+        public final HashMap<String, ArrayList<String>> nodeMap;
+        public final List<String> vars;
+
+        public ParsedData(HashMap<String, ArrayList<String>> nodeMap, List<String> vars) {
+            this.nodeMap = nodeMap;
+            this.vars = vars;
+        }
+    }
 
     private static HashMap<String, ArrayList<String>> nodeMap;
     // for debug purposes only!!!
@@ -26,13 +35,8 @@ public class Parser {
         }
     }
 
-    public static void main(String args[]) {
-        //TODO: fault in parsing input is caught in ExpressionListener and fails the build, example: "A&B|(A&B|C=1)"
-        //TODO: fix problems with brackets: in parsing and in operation order
-
-        String testInp = "A&B|C=0"; //"A&B&C|A=0";
-        LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(testInp));
-
+    public static ParsedData createNodeMap(String expression) {
+        LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(expression));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         LogExpParser parser = new LogExpParser(tokens);
         ParseTree tree = parser.eval();
@@ -46,5 +50,12 @@ public class Parser {
         nodeMap = listener.getNodeMap();
         UtilityMethods.cropNodeMap(nodeMap);
         printNodeMap();
+        return new ParsedData(nodeMap, vars);
+    }
+
+    public static void main(String args[]) {
+        //TODO: fix problems with brackets: in parsing and in operation order
+
+        createNodeMap("A&B=1");
     }
 }
