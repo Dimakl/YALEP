@@ -37,17 +37,6 @@ public class ExpressionListener extends LogExpBaseListener {
         return nodeMap;
     }
 
-    // method for testing TODO: delete this method
-    private void printNodeMap() {
-        for (String item : nodeMap.keySet()) {
-            System.out.print(item + ": ");
-            for (String nodePos : nodeMap.get(item))
-                System.out.print(nodePos + " ");
-            System.out.println();
-        }
-        System.out.println();
-    }
-
 
     /*
         One of important features from antlr is .getStartIndex()
@@ -98,8 +87,6 @@ public class ExpressionListener extends LogExpBaseListener {
         nodeMap.get(opWithIndex).add(CREATE_NODE);
     }
 
-
-    //TODO: make realization of these 2 methods:
     @Override
     public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) {
         nodeMap.putIfAbsent(ctx.id.getText()+"0",

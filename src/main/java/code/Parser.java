@@ -30,7 +30,6 @@ public class Parser {
         //TODO: fault in parsing input is caught in ExpressionListener and fails the build, example: "A&B|(A&B|C=1)"
         //TODO: fix problems with brackets: in parsing and in operation order
 
-        // TODO: this part of code must be @Test
         String testInp = "A&B|C=0"; //"A&B&C|A=0";
         LogExpLexer lexer = new LogExpLexer(CharStreams.fromString(testInp));
 
