@@ -1,7 +1,6 @@
 package code;
 
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,32 +46,10 @@ public class UtilityMethods {
         return -1; // can not be called actually
     }
 
-    private static ArrayList<Boolean> nextSolution(ArrayList<Boolean> solution, Integer pos) {
-        if (pos == solution.size()) {
-            return null;
-        }
-        else if (!solution.get(pos)) {
-            solution.set(pos, true);
-            return solution;
-        }
-        else {
-            solution.set(pos, false);
-            nextSolution(solution, pos + 1);
-        }
-    }
 
-    public static checkSolution(Parser.ParsedData parsedData, ArrayList<Boolean> solution) {
-
-    }
-
-    public static ArrayList<Boolean> findNodeMapSolution(Parser.ParsedData parsedData) {
-        HashMap<String, ArrayList<String>> nodeMap = parsedData.nodeMap;
-        List<String> vars = parsedData.vars;
-        ArrayList<Boolean> solution = new ArrayList<>(Collections.nCopies(vars.size(), false));
-        while (solution != null) {
-
-            solution = nextSolution(solution, 0);
-        }
+    // TODO: realization of this method
+    protected static String formatExpression(String expression){
+        return expression;
     }
 
     protected static void cropNodeMap(HashMap<String,ArrayList <String>> nodeMap) {

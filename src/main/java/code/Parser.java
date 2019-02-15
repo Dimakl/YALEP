@@ -7,10 +7,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class Parser {
 
@@ -55,7 +52,11 @@ public class Parser {
 
     public static void main(String args[]) {
         //TODO: fix problems with brackets: in parsing and in operation order
-
-        createNodeMap("A&B=1");
+        ArrayList<String> tokens = PostfixNotation.tokenizeExpression("((A&B)|C&D)&A");
+        Queue<String> postfixNotation = PostfixNotation.generatePostfixNotation(tokens);
+        while (!postfixNotation.isEmpty()) {
+            System.out.print(postfixNotation.poll());
+        }
+        //createNodeMap("A&B=1");
     }
 }
