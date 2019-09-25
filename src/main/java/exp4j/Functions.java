@@ -43,6 +43,6 @@ public class Functions {
             }
             return 1 - arg;
         }
-    }
+    };
 
 }
