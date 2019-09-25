@@ -34,7 +34,8 @@ public class Functions {
         return arg == 1 || arg == 0;
     }
 
-    public static Operator negation = new Operator(Designation.NOT.value, 1, false, Precedence.NEGOTIATION.value) {
+    public static Operator not =
+            new Operator(Designation.NOT.value, 1, false, Precedence.NOT.value) {
         @Override
         public double apply(double... args) {
             final int arg = (int) args[0];
@@ -44,5 +45,19 @@ public class Functions {
             return 1 - arg;
         }
     };
+
+    public static Operator xor =
+            new Operator(Designation.XOR.value, 2, false, Precedence.XOR.value) {
+        @Override
+        public double apply(double... args) {
+            final int arg1 = (int) args[0];
+            final int arg2 = (int) args[1];
+            if (!isArgumentBoolean(arg1) || !isArgumentBoolean(arg2)) {
+                throw new IllegalArgumentException("Not boolean value of input");
+            }
+
+            return arg1 ^ arg2;
+        }
+    }
 
 }
