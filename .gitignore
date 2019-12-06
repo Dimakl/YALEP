@@ -88,3 +88,8 @@ fabric.properties
 .idea/compiler.xml
 */target/**
 .idea/misc.xml
+
+
+# Additionaly ignore:
+./idea/**
+target/**
