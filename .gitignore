@@ -92,4 +92,6 @@ fabric.properties
 
 # Additionaly ignore:
 ./idea/**
+./idea/*
 target/**
+target/*
