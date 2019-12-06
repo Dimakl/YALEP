@@ -91,7 +91,6 @@ fabric.properties
 
 
 # Additionaly ignore:
-./idea/**
-./idea/*
-target/**
-target/*
+.idea
+target
+.DS_Store
