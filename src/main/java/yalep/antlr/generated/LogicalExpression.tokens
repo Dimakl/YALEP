@@ -1,0 +1,13 @@
+LPAREN=1
+RPAREN=2
+NOT=3
+AND=4
+OR=5
+XOR=6
+VARIABLE=7
+'('=1
+')'=2
+'!'=3
+'&'=4
+'|'=5
+'^'=6

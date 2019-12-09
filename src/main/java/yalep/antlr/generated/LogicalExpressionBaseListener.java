@@ -1,88 +1,88 @@
-// Generated from /home/dimakl/IdeaProjects/YALEP/src/main/java/antlr/LogExp.g4 by ANTLR 4.7.2
-package antlr;
+// Generated from /home/dimakl/IdeaProjects/inflate-my-mind/src/main/java/com/inflatemymind/antlr/LogicalExpression.g4 by ANTLR 4.7.2
+package yalep.antlr.generated;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link LogExpListener},
+ * This class provides an empty implementation of {@link LogicalExpressionListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class LogExpBaseListener implements LogExpListener {
+public class LogicalExpressionBaseListener implements LogicalExpressionListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEval(LogExpParser.EvalContext ctx) { }
+	@Override public void enterEval(LogicalExpressionParser.EvalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEval(LogExpParser.EvalContext ctx) { }
+	@Override public void exitEval(LogicalExpressionParser.EvalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryExpression(LogExpParser.BinaryExpressionContext ctx) { }
+	@Override public void enterOR(LogicalExpressionParser.ORContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryExpression(LogExpParser.BinaryExpressionContext ctx) { }
+	@Override public void exitOR(LogicalExpressionParser.ORContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) { }
+	@Override public void enterPARENS(LogicalExpressionParser.PARENSContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdentifierExpression(LogExpParser.IdentifierExpressionContext ctx) { }
+	@Override public void exitPARENS(LogicalExpressionParser.PARENSContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotExpression(LogExpParser.NotExpressionContext ctx) { }
+	@Override public void enterVARIABLE(LogicalExpressionParser.VARIABLEContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNotExpression(LogExpParser.NotExpressionContext ctx) { }
+	@Override public void exitVARIABLE(LogicalExpressionParser.VARIABLEContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenExpression(LogExpParser.ParenExpressionContext ctx) { }
+	@Override public void enterAND(LogicalExpressionParser.ANDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParenExpression(LogExpParser.ParenExpressionContext ctx) { }
+	@Override public void exitAND(LogicalExpressionParser.ANDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinary(LogExpParser.BinaryContext ctx) { }
+	@Override public void enterXOR(LogicalExpressionParser.XORContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinary(LogExpParser.BinaryContext ctx) { }
+	@Override public void exitXOR(LogicalExpressionParser.XORContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
