@@ -1,0 +1,2 @@
+exclude:
+  /src/main/java/yalep/antlr/generated/*
