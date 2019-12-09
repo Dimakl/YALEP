@@ -15,7 +15,7 @@ public class LogicalExpressionValidityChecker {
     private static final String ALLOWED_TOKENS = "()!&|^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-    public static void expressionIsValid(String rawExpression) throws WrongExpressionFormatException {
+    protected static void expressionIsValid(String rawExpression) throws WrongExpressionFormatException {
         String expression = getLogicalExpressionAndValidateBasics(rawExpression);
         checkSyntaxErrors(expression);
         checkInvalidTokens(expression);
