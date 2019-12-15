@@ -2,6 +2,7 @@ package yalep.code;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import yalep.antlr.LogicalExpressionErrorListener;
 import yalep.antlr.generated.LogicalExpressionLexer;
 import yalep.antlr.generated.LogicalExpressionParser;
 import yalep.exceptions.WrongExpressionFormatException;
@@ -15,19 +16,36 @@ public class LogicalExpressionValidityChecker {
     private static final String ALLOWED_TOKENS = "()!&|^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
+    public static void main(String[] args) {
+        try {
+            expressionIsValid("A&B&C&D=0");
+            System.out.println();
+        } catch (WrongExpressionFormatException e) {
+            System.out.println("12321321321");
+        }
+    }
+
+
     protected static void expressionIsValid(String rawExpression) throws WrongExpressionFormatException {
         String expression = getLogicalExpressionAndValidateBasics(rawExpression);
         checkSyntaxErrors(expression);
         checkInvalidTokens(expression);
+
     }
 
     private static void checkSyntaxErrors(String expression) throws WrongExpressionFormatException {
         LogicalExpressionLexer lexer = new LogicalExpressionLexer(CharStreams.fromString(expression));
+        lexer.removeErrorListeners();
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         LogicalExpressionParser parser = new LogicalExpressionParser(tokens);
-        parser.eval();
-
-        if (parser.getNumberOfSyntaxErrors() == 0) {
+        parser.removeErrorListeners();
+        parser.addErrorListener(new LogicalExpressionErrorListener());
+        try {
+            parser.eval();
+        } catch (RuntimeException e) {
+            throw new WrongExpressionFormatException(e.getMessage());
+        }
+        if (parser.getNumberOfSyntaxErrors() != 0) {
             throw new WrongExpressionFormatException("Expression has syntax errors");
         }
     }
@@ -57,4 +75,5 @@ public class LogicalExpressionValidityChecker {
 
         return  rawExpression.substring(0, equalSignPos);
     }
+
 }
