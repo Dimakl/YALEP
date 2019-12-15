@@ -31,7 +31,7 @@ public class LogicalExpressionValidityCheckerTest {
                 {"A&&B=1", Result.FAIL},
                 {"expression=1", Result.FAIL},
                 {"ABC=1", Result.FAIL},
-                {"A|B=3", Result.FAIL},
+                {"A|B=3", Result.SUCCESS},
                 {"AandB=1", Result.FAIL},
         });
     }
@@ -42,9 +42,9 @@ public class LogicalExpressionValidityCheckerTest {
         System.out.println("running test for " + expression);
         try {
             LogicalExpressionValidityChecker.expressionIsValid(expression);
-            Assert.assertEquals(result, Result.SUCCESS);
+            assert result == Result.SUCCESS : "No expected format exception";
         } catch (WrongExpressionFormatException e) {
-            Assert.assertEquals(result, Result.FAIL);
+            assert result == Result.FAIL : "Unexpected format exception";
         }
     }
 
