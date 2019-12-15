@@ -9,6 +9,7 @@ public enum TreeNodeType {
     NOT("not.png");
 
     private String imageFileName;
+    private String additionalInfo;
 
     TreeNodeType(String imageFileName) {
         this.imageFileName = imageFileName;
@@ -16,5 +17,13 @@ public enum TreeNodeType {
 
     public String getImageFileName() {
         return imageFileName;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
     }
 }
