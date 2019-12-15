@@ -32,7 +32,7 @@ public class LogicalExpressionValidityCheckerTest {
                 {"A&&B=1", Result.FAIL},
                 {"expression=1", Result.FAIL},
                 {"ABC=1", Result.FAIL},
-                {"A|B=3", Result.SUCCESS},
+                {"A|B=3", Result.FAIL},
                 {"AandB=1", Result.FAIL},
         });
     }
