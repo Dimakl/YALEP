@@ -16,17 +16,8 @@ public class LogicalExpressionValidityChecker {
     private static final String ALLOWED_TOKENS = "()!&|^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
-    public static void main(String[] args) {
-        try {
-            expressionIsValid("A&B&C&D=0");
-            System.out.println();
-        } catch (WrongExpressionFormatException e) {
-            System.out.println("12321321321");
-        }
-    }
-
-
     protected static void expressionIsValid(String rawExpression) throws WrongExpressionFormatException {
+        rawExpression = rawExpression.replaceAll(" ","");
         String expression = getLogicalExpressionAndValidateBasics(rawExpression);
         checkSyntaxErrors(expression);
         checkInvalidTokens(expression);
