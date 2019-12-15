@@ -13,22 +13,22 @@ import java.util.Collection;
 public class LogicalExpressionValidityCheckerTest {
 
     private String expression;
-    private Boolean mustFail;
+    private Result result;
 
-    public LogicalExpressionValidityCheckerTest(String expression, Boolean mustFail) {
+    public LogicalExpressionValidityCheckerTest(String expression, Result result) {
         this.expression = expression;
-        this.mustFail = mustFail;
+        this.result = result;
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> getTestData() {
         return Arrays.asList(new Object[][] {
-                {"A=1", false},
-                {"A&B=0", false},
-                {"1", true},
-                {"A&&B=1", true},
-                {"expression=1", true},
-                {"A|B=3", true}
+                {"A=1", Result.SUCCESS},
+                {"A&B=0", Result.SUCCESS},
+                {"1", Result.FAIL},
+                {"A&&B=1", Result.FAIL},
+                {"expression=1", Result.FAIL},
+                {"A|B=3", Result.FAIL}
         });
     }
 
@@ -38,9 +38,14 @@ public class LogicalExpressionValidityCheckerTest {
         System.out.println("running test for " + expression);
         try {
             LogicalExpressionValidityChecker.expressionIsValid(expression);
-            Assert.assertEquals(mustFail, false);
+            Assert.assertEquals(result, Result.SUCCESS);
         } catch (WrongExpressionFormatException e) {
-            Assert.assertEquals(mustFail, true);
+            Assert.assertEquals(result, Result.FAIL);
         }
+    }
+
+    private enum Result {
+        SUCCESS,
+        FAIL;
     }
 }
