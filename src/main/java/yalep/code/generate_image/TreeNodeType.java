@@ -4,6 +4,7 @@ public enum TreeNodeType {
     VAR,
     OR,
     AND,
-    PARENS,
-    XOR
+    XOR,
+    BUFFER,
+    NOT
 }
