@@ -14,6 +14,7 @@ public class ExpressionToLogicalGatesConverter {
     public ExpressionToLogicalGatesConverter(String expression) throws WrongExpressionFormatException {
         LogicalExpressionValidityChecker.expressionIsValid(expression);
         this.expression = expression.substring(0, expression.indexOf("="));
+        this.expression = this.expression.replaceAll(" ","");
         answer = Integer.parseInt(expression.substring(expression.indexOf("=") + 1));
     }
 }
