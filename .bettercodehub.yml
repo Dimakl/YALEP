@@ -1,3 +1,4 @@
 component_depth: 5
 exclude:
 - /src/main/java/yalep/antlr/generated/.*
+- /src/main/java/yalep/antlr/LogicalExpressionErrorListener
