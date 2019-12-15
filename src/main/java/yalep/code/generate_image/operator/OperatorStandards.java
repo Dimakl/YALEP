@@ -1,7 +1,7 @@
 package yalep.code.generate_image.operator;
 
 public enum OperatorStandards {
-    IEEE("ieee");
+    IEEE("ieee/");
 
     private String folderName;
 
