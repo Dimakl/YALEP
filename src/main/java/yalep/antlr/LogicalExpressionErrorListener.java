@@ -11,13 +11,14 @@ import java.util.BitSet;
 
 public class LogicalExpressionErrorListener extends BaseErrorListener {
 
+
     @Override
     public void reportAmbiguity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, boolean exact, BitSet ambigAlts, ATNConfigSet configs) {
-        FailedRecognizers.addFailedRecognizer(recognizer);
+        throw new RuntimeException("Expression is ambiguous");
     }
 
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-        FailedRecognizers.addFailedRecognizer(recognizer);
+        throw new RuntimeException("Expression has wrong syntax");
     }
 }
