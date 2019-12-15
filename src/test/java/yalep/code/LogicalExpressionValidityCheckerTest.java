@@ -26,11 +26,13 @@ public class LogicalExpressionValidityCheckerTest {
                 {"A&B=1", Result.SUCCESS},
                 {"A&B&C&D=0", Result.SUCCESS},
                 {"A=1", Result.SUCCESS},
+                {"A & B = 0", Result.SUCCESS},
                 {"1", Result.FAIL},
                 {"A&&B=1", Result.FAIL},
                 {"expression=1", Result.FAIL},
                 {"ABC=1", Result.FAIL},
-                {"A|B=3", Result.FAIL}
+                {"A|B=3", Result.FAIL},
+                {"AandB=1", Result.FAIL},
         });
     }
 
