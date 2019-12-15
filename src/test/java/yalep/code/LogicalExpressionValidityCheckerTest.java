@@ -1,6 +1,5 @@
 package yalep.code;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -43,10 +42,11 @@ public class LogicalExpressionValidityCheckerTest {
         System.out.println("running test for " + expression);
         try {
             LogicalExpressionValidityChecker.expressionIsValid(expression);
-            assertEquals(result, Result.SUCCESS);
+            assertEquals("Expression haven't thrown an exception", result, Result.SUCCESS);
         } catch (WrongExpressionFormatException e) {
-            assertEquals(result, Result.FAIL);
+            assertEquals("Expression shouldn't have thrown an exception", result, Result.FAIL);
         }
+        System.out.println("OK");
     }
 
     private enum Result {
